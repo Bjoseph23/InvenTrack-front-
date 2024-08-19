@@ -3,6 +3,12 @@ import axios from 'axios';
 import './Home.css'; 
 
 const Home = () => {
+    const formatCurrency = (value) => {
+        return new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD',
+        }).format(value);
+    };
     const [data, setData] = useState({
         bestSellerLast7Days: null,
         totalRevenue: null,
@@ -63,7 +69,7 @@ const Home = () => {
                 <div className="card">
                     <h2>Total Revenue</h2>
                     {totalRevenue ? (
-                        <p>${totalRevenue.total_revenue}</p>
+                        <p>{formatCurrency(totalRevenue.total_revenue)}</p>
                     ) : (
                         <p>Loading...</p>
                     )}
@@ -71,7 +77,7 @@ const Home = () => {
                 <div className="card">
                     <h2>Total Sale Return</h2>
                     {totalSaleReturn ? (
-                        <p>${totalSaleReturn.total_sale_return}</p>
+                        <p>{formatCurrency(totalSaleReturn.total_sale_return)}</p>
                     ) : (
                         <p>Loading...</p>
                     )}
@@ -79,7 +85,7 @@ const Home = () => {
                 <div className="card">
                     <h2>Total Purchase</h2>
                     {totalPurchase ? (
-                        <p>${totalPurchase.total_purchase}</p>
+                        <p>{formatCurrency(totalPurchase.total_purchase)}</p>
                     ) : (
                         <p>Loading...</p>
                     )}
